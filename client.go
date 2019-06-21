@@ -89,4 +89,36 @@ type Client interface {
 	// unsubscribe
 	// POST api/v3/mqtt/unsubscribe
 	Unsubscribe(req *UnSubscribeRequestV3) (*NoContentResponse, error)
+
+	// ListClusterPlugins List all Plugins of Cluster
+	// GET api/v3/plugins/
+	ListClusterPlugins() (*ListClusterPluginResponseV3, error)
+
+	// ListNodePlugins List all plugins in a node
+	// GET api/v3/nodes/${node}/plugins/
+	ListNodePlugins(node string) (*ListNodePluginResponseV3, error)
+
+	// StartNodePlugins Start a plugin
+	// PUT api/v3/nodes/${node}/plugins/${plugin}/load
+	StartNodePlugins(node, plugin string) (*NoContentResponse, error)
+
+	// StopNodePlugins stop a plugin
+	// PUT api/v3/nodes/${node}/plugins/${plugin}/unload
+	StopNodePlugins(node, plugin string) (*NoContentResponse, error)
+
+	// ListClusterListeners List all listeners of Cluster
+	// GET api/v3/listeners/
+	ListClusterListeners() (*ListClusterListenersResponseV3, error)
+
+	// ListNodeListeners List all listeners in a node
+	// GET api/v3/nodes/${node}/plugins/
+	ListNodeListeners(node string) (*ListNodeListenerResponseV3, error)
+
+	// ListClusterMetrics List all metrics of Cluster
+	// GET api/v3/metrics/
+	ListClusterMetrics() (*ListClusterMetricsResponseV3, error)
+
+	// GetNodeMetrics get all metrics in a node
+	// GET api/v3/nodes/${node}/metrics/
+	GetNodeMetrics(node string) (*GetNodeMetricsResponseV3, error)
 }
